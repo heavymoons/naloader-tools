@@ -1,0 +1,10 @@
+/node_modules
+/public/storage
+vendor
+.env
+composer.lock
+composer.phar
+*.iml
+.idea
+/.php-version
+/.phpstorm.meta.php

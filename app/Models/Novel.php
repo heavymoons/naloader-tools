@@ -62,9 +62,9 @@ class Novel extends \Eloquent
      * @return \Carbon\Carbon|string
      */
     public function getLastCrawledAt() {
-        $lastCrawledAt = $this->crawled_at;
+        $lastCrawledAt = null;
         foreach ($this->chapters as $chapter) {
-            if ($chapter->crawled_at > $lastCrawledAt) {
+            if ($lastCrawledAt == null || $chapter->crawled_at > $lastCrawledAt) {
                 $lastCrawledAt = $chapter->crawled_at;
             }
         }

@@ -52,6 +52,11 @@ class DumpAll extends Command
         $novels = Novel::all();
         $this->info(count($novels) . " novels.");
         foreach ($novels as $novel) {
+            if (!NovelService::canSaveToText($novel)) {
+                $this->info("novel cannot dump: {$novel->url}");
+                continue;
+            }
+
             $title = "{$novel->author->name}『{$novel->title}』";
             $title = static::convertCharacterNoUseForFilename($title);
             $filename = "$targetDir/$title.txt";

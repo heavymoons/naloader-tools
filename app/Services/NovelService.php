@@ -93,6 +93,17 @@ class NovelService
 
     /**
      * @param Novel $novel
+     * @return bool
+     */
+    public static function canSaveToText(Novel $novel) {
+        foreach ($novel->chapters as $chapter) {
+            if ($chapter->crawled_at == null) {return false;}
+        }
+        return true;
+    }
+
+    /**
+     * @param Novel $novel
      * @param $filename
      */
     public static function saveTextTo(Novel $novel, $filename) {

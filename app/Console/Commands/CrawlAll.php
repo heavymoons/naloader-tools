@@ -14,8 +14,8 @@ use Illuminate\Console\Command;
  */
 class CrawlAll extends Command
 {
-    const CRAWL_INTERVAL_SECONDS = 5; // 連続アクセスを避けるためのインターバル（秒）
-    const CRAWL_INTERVAL_MINUTES = 600; // 同じ作品の情報を連続して取得しないためのインターバル（分）
+    const CRAWL_INTERVAL_SECONDS = 4; // 連続アクセスを避けるためのインターバル（秒）
+    const CRAWL_INTERVAL_MINUTES = 60 * 24; // 同じ作品の情報を連続して取得しないためのインターバル（分）
 
     /**
      * @param Novel $novel
@@ -58,6 +58,8 @@ class CrawlAll extends Command
      */
     public function handle()
     {
+        \DB::disableQueryLog();
+
         $novels = Novel::all();
         $this->info(count($novels) . " novels remaining.");
         foreach ($novels as $novel) {

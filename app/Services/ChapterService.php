@@ -52,9 +52,9 @@ class ChapterService
      */
     public static function download(
         Chapter $chapter,
-        $encodingOption = Naloader::ENCODING_OPTION_UTF8,
-        $hankakuOption = Naloader::HANKAKU_OPTION_NO_CHANGE,
-        $linebreakOption = Naloader::LINEBREAK_OPTION_CRLF
+        $encodingOption = self::ENCODING_OPTION_UTF8,
+        $hankakuOption = self::HANKAKU_OPTION_NO_CHANGE,
+        $linebreakOption = self::LINEBREAK_OPTION_CRLF
     ) {
         $downloadUrl = $chapter->novel->text_download_url;
         $params = [

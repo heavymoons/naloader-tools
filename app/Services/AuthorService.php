@@ -47,4 +47,18 @@ class AuthorService
     public static function findByAuthorUrl($url) {
         return Author::whereUrl($url)->firstOrFail();
     }
+
+    /**
+     * @param Author $author
+     */
+    public static function crawl(Author $author) {
+        $authorCrawler = new \Naloader\Author($author->url);
+        $authorCrawler->crawl();
+
+        foreach ($authorCrawler->novels as $novelCrawler) {
+            if (!NovelService::isRegisteredNovelUrl($novelCrawler->url)) {
+                NovelService::registerNovelUrl($novelCrawler->url);
+            }
+        }
+    }
 }

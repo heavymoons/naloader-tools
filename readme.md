@@ -20,6 +20,10 @@ php artisan register_novel_url {url}
 
 ※ URLは小説家になろう関連サイトの小説ページURL
 
+## ランキングページなどに含まれる小説URLの登録
+
+php artisan retrieve_novel_url {url}
+
 ## 小説情報の取得／更新
 
 php artisan crawl_all

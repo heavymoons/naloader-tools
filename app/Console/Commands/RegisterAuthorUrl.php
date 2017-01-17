@@ -2,24 +2,28 @@
 
 namespace App\Console\Commands;
 
-use App\Services\NovelService;
+use App\Services\AuthorService;
 use Illuminate\Console\Command;
 
-class RegisterNovelUrl extends Command
+/**
+ * Class RegisterAuthorUrl
+ * @package App\Console\Commands
+ */
+class RegisterAuthorUrl extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'register_novel_url {url}';
+    protected $signature = 'register_author_url {url}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'register novel URL';
+    protected $description = 'register author URL';
 
     /**
      * Create a new command instance.
@@ -32,16 +36,20 @@ class RegisterNovelUrl extends Command
 
     /**
      * Execute the console command.
+     *
      * @return mixed
-     * @throws \Exception
      */
     public function handle()
     {
         $url = $this->argument('url');
-        if (NovelService::isRegisteredNovelUrl($url)) {
+
+        if (AuthorService::isRegisteredAuthorUrl($url)) {
             $this->info("already registered url: $url");
-            return;
+            $author = AuthorService::findByAuthorUrl($url);
+        } else {
+            $author = AuthorService::registerAuthorUrl($url);
         }
-        NovelService::registerNovelUrl($url);
+
+        AuthorService::crawl($author);
     }
 }

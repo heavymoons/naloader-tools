@@ -4,7 +4,9 @@ namespace App\Console;
 
 use App\Console\Commands\CrawlAll;
 use App\Console\Commands\DumpAll;
+use App\Console\Commands\RegisterAuthorUrl;
 use App\Console\Commands\RegisterNovelUrl;
+use App\Console\Commands\RetrieveNovelUrl;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,8 +19,10 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         RegisterNovelUrl::class,
+        RegisterAuthorUrl::class,
         CrawlAll::class,
         DumpAll::class,
+        RetrieveNovelUrl::class,
     ];
 
     /**

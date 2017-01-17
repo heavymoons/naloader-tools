@@ -1,9 +1,9 @@
 {
-  "name": "laravel/laravel",
-  "description": "The Laravel Framework.",
+  "name": "heavymoons/naloader-tools",
+  "description": "retrieve and download 小説家になろう site contents",
   "keywords": [
-    "framework",
-    "laravel"
+    "小説家になろう",
+    "tools"
   ],
   "license": "MIT",
   "type": "project",
